@@ -1,0 +1,21 @@
+@import 'node_modules/bootstrap/scss/bootstrap';
+
+@import "fonts";
+@import "variables";
+
+html, body {
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+
+html {
+    height: 100%;
+}
+  
+
+body {
+    color: $color-white;
+    background: $color-black;
+    font-family: $font-family-poppins;
+}
