@@ -35,19 +35,19 @@
                     <form>
                         <div class="form-row align-items-center justify-content-center py-3">
                             <div class="col-md-1">
-                                <select id="inputState" class="form-control">
-                                    <option selected>+</option>
-                                    <option>-</option>
+                                <select id="inputState" class="form-control add__type">
+                                    <option value="plus" selected>+</option>
+                                    <option value="minus">-</option>
                                 </select>
                             </div>
                             <div class="col-md-4">
-                                    <input type="text" class="form-control" id="" placeholder="Add a description">
+                                    <input type="text" class="form-control add__description" id="" placeholder="Add a description">
                             </div>
                             <div class="col-md-2">
-                                    <input type="text" class="form-control" id="" placeholder="Value">
+                                    <input type="text" class="form-control add__value" id="" placeholder="Value">
                             </div>
                             <div class="col-md-1">
-                                <button type="submit" class="btn btn-primary">Submit</button>
+                                <input type="button" class="btn btn-primary add__btn" value="Submit">
                             </div>
                         </div>
                     </form>
