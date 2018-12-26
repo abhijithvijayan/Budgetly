@@ -2,20 +2,22 @@
 
 @import "fonts";
 @import "variables";
+@import "reset";
+
+@import "home";
+@import "data";
+@import "display";
 
 html, body {
     margin: 0;
     padding: 0;
     border: 0;
 }
-
-html {
-    height: 100%;
-}
   
-
 body {
     color: $color-white;
-    background: $color-black;
-    font-family: $font-family-poppins;
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../assets/bg-image.jpeg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    font-family: $font-family-montserrat;
 }

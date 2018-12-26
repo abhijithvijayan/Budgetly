@@ -1,0 +1,49 @@
+#home {
+    .budget__title {
+        font-size: 18px;
+        font-weight: $font-weight-light;
+    }
+    .budget__value {
+        font-size: 46px;
+        letter-spacing: 2px;
+        font-weight: $font-weight-light;
+    }
+    .budget__income, .budget__expenses {
+        padding: 12px;
+        text-transform: uppercase;
+        width: 50%;
+        @media screen and (max-width: $screen-xs-max) {
+            width: 60%;
+        }
+        @media screen and (min-width: $screen-md-min) {
+            width: 30%;   
+        }
+    }
+    .budget__income {
+        background-color: #28B9B5;    
+        .budget__income--text {
+            margin-right: 2em;
+        }
+        .budget__income--value {
+            font-weight: $font-weight-bold;
+            letter-spacing: 1px;
+        }
+    }
+    .budget__expenses {
+        background-color: #FF5049;
+        .budget__expenses--text {
+            margin-right: 2em;
+        }
+        .budget__expenses--value {
+            font-weight: $font-weight-bold;
+            letter-spacing: 1px;
+            .budget__expenses--percentage {
+                background-color: rgba(255, 255, 255, 0.2);
+            }
+        }
+    }
+    .budget__income--percentage,
+    .budget__expenses--percentage {
+        font-size: 11px;
+    }
+}
