@@ -13,15 +13,23 @@
 
             <section id="home">
                 <div class="container">
-                    <div class="row text-center">
-                        <div class="col-md-12 p-5">
+                    <div class="row">
+                        <div class="col-md-12 pt-5 pb-3 text-center">
                             <h4 class="budget__title">Available Budget in this month:</h4>
-                            <span class="budget__value">+ 2999.99</span>
-                            <div class="budget__income mx-auto mt-4">
+                            <span class="budget__value">+ 2999.99</span>                            
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4 mx-auto pb-2">
+                            <div class="budget__income d-flex justify-content-between align-items-center">
                                 <span class="budget__income--text">Income</span>
                                 <span class="budget__income--value">+ 4000.00<span class="badge budget__income--percentage ml-3">11%</span></span>
                             </div>
-                            <div class="budget__expenses mx-auto mt-3">
+                        </div>                    
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4 mx-auto mb-5">                            
+                            <div class="budget__expenses d-flex justify-content-between align-items-center">
                                 <span class="budget__expenses--text">Expenses</span>
                                 <span class="budget__expenses--value">- 2697.42<span class="badge budget__expenses--percentage ml-3">67%</span></span>
                             </div>
@@ -47,7 +55,7 @@
                                     <input type="text" class="form-control add__value" id="" placeholder="Value">
                             </div>
                             <div class="col-md-1">
-                                <input type="button" class="btn btn-primary add__btn" value="Submit">
+                                <button class="btn btn-link add__btn" value="Submit"><i class="ion-ios-checkmark-outline"></i></button>
                             </div>
                         </div>
                     </form>
@@ -56,18 +64,18 @@
 
             <section id="display">
                 <div class="container">
-                    <div class="row pt-5 list__elements">
+                    <div class="row pt-5 list__elements justify-content-center">
 
-                        <div class="col-md-6 income">
+                        <div class="col-md-4 income mr-4">
                             <h4 class="income__title">Income</h4>
                             <div class="income__list">
-                            
+                            <!-- comment this item -->
                                 <div class="item" id="income-0">
-                                    <div class="right">
+                                    <div class="right d-flex justify-content-between align-items-center">
                                         <span class="item__description">Salary</span>
-                                        <span class="item__value">+ 2,100.00</span>
+                                        <span class="item__value ml-auto">+ 2,100.00</span>
                                         <span class="item__delete">
-                                            <button class="btn btn-link item__delete--btn">&times;</button>
+                                            <button class="btn btn-link item__delete--btn d-none"><i class="ion-ios-close-outline"></i></button>
                                         </span>
                                     </div>
                                 </div>
@@ -75,17 +83,18 @@
                             </div>
                         </div>
 
-                        <div class="col-md-6 expenses">
+                        <div class="col-md-4 expenses ml-4">
                             <h4 class="expenses__title">Expenses</h4>
                             <div class="expenses__list">
                             
+                                <!-- comment this item -->
                                 <div class="item" id="expense-0">
-                                    <div class="right">
+                                    <div class="right d-flex justify-content-between align-items-center">
                                         <span class="item__description">Apartment rent</span>
-                                        <span class="item__value">- 900.00</span>
+                                        <span class="item__value ml-auto">- 900.00</span>
                                         <span class="item__percentage">21%</span>
                                         <span class="item__delete">
-                                            <button class="btn btn-link item__delete--btn">&times;</button>
+                                            <button class="btn btn-link item__delete--btn d-none"><i class="ion-ios-close-outline"></i></button>
                                         </span>
                                     </div>
                                 </div>

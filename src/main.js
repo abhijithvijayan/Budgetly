@@ -98,11 +98,11 @@ var UIController = (function() {
             // 1. create the description, amount, percentage in html   
             if(type === "plus") {
                 pos = DOMStrings.incomeContainer;
-                html = '<div class="item" id="income-%id%"><div class="right"><span class="item__description">%description%</span><span class="item__value">%value%</span><span class="item__delete"><button class="btn btn-link item__delete--btn">&times;</button></span></div></div>';
+                html = '<div class="item" id="income-%id%"><div class="right d-flex justify-content-between align-items-center"><span class="item__description">%description%</span><span class="item__value ml-auto">%value%</span><span class="item__delete"><button class="btn btn-link item__delete--btn d-none"><i class="ion-ios-close-outline"></i></button></span></div></div>';
             }
             else if(type === "minus") {
                 pos = DOMStrings.expensesContainer;
-                html = '<div class="item" id="expense-%id%"><div class="right"><span class="item__description">%description%</span><span class="item__value">%value%</span><span class="item__percentage">21%</span><span class="item__delete"><button class="btn btn-link item__delete--btn">&times;</button></span></div></div>';                
+                html = '<div class="item" id="expense-%id%"><div class="right d-flex justify-content-between align-items-center"><span class="item__description">%description%</span><span class="item__value ml-auto">%value%</span><span class="item__percentage">21%</span><span class="item__delete"><button class="btn btn-link item__delete--btn d-none"><i class="ion-ios-close-outline"></i></button></span></div></div>';                
             }
 
             console.log(obj.id);

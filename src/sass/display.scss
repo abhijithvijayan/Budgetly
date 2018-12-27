@@ -5,33 +5,95 @@
     .list__elements {
         .income {
             .income__title {
-                
+                color: $color-pale-white;
             }
-            .income__list {
+            // .income__list {
                 
-            }
+            // }
         }
         .expenses {
             .expenses__title {
-
+                color: $color-pale-red;
             }
-            .expenses__list {
+            // .expenses__list {
 
+            // }
+            .item {
+                .right {
+                    .item__value,
+                    .item__percentage {
+                        color: $color-pale-red !important;
+                    }
+                    .item__delete {
+                        .item__delete--btn {
+                            color: $color-pale-red;
+                        }
+                    }
+                }
             }
+        }
+        .income__title,
+        .expenses__title {
+            font-weight: $font-weight-semibold;
+            text-transform: uppercase;
+            font-size: 17px;
         }
         .income__list,
         .expenses__list {
             .item {
+                border-bottom: 1px solid $color-light-white;
+                &:first-child {
+                    border-top: 1px solid $color-light-white; 
+                }
+                &:nth-child(even) { 
+                    background-color: $color-white; 
+                }
+                &:hover .item__delete--btn {
+                    display: block !important;
+                }
+                &:hover .item__value { 
+                    transform: translateX(-10px); 
+                }
+                &:hover .item__percentage { 
+                    transform: translateX(-8px); 
+                }
                 .right {
+                    padding: .7em 0;
                     .item__description {
-
+                        font-weight: $font-weight-medium;
+                        margin-left: 5px;
                     }
-                    .item__value {
-
+                    .item__value {                        
+                        padding-right: 5px;
+                        float: right;
+                        transition: transform 0.3s;
+                        color: $color-pale-white;
+                    }
+                    .item__percentage {
+                        text-align: center;
+                        margin: 0 10px;
+                        transition: transform 0.3s;
+                        font-size: 10px;
+                        color: $color-pale-red;
+                        background-color: $colot-white-shade;
+                        padding: 3px;
+                        border-radius: 3px;
+                        width: 32px;
                     }
                     .item__delete {
                         .item__delete--btn {
-
+                            color: $color-pale-white;
+                            margin-right: 10px;
+                            padding: 0;
+                            font-size: 16px;
+                            background: none;
+                            border: none;
+                            cursor: pointer;
+                            display: inline-block;
+                            vertical-align: middle;
+                            &:hover {
+                                color: $color-pale-red;
+                            }
                         }
                     }
                 }
