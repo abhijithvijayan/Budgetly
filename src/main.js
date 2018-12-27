@@ -80,7 +80,8 @@ var UIController = (function() {
             return {
                 type: document.querySelector(DOMStrings.inputType).value,
                 description: document.querySelector(DOMStrings.inputDesc).value,
-                value: document.querySelector(DOMStrings.inputValue).value
+                // to a decimal number
+                value: parseFloat(document.querySelector(DOMStrings.inputValue).value)
             };
         },
 
@@ -163,13 +164,22 @@ var controller = (function(budgetCtrl, UICtrl) {
         });
     };
 
+    var updateBudget = () => {
+        // 1. calculate budget
+
+        // 2. 
+    };
+
     var ctrlAddItem = () => {
         var input, newItem;
 
         // 1. Get Data
         input = UICtrl.getInput();
+
+        // isNan returns true if no. is NaN
+        if(input.description != "" && !isNaN(input.value) && input.value > 0) {
         
-        // 2. Add item to budget controller
+        // 2. if not null, Add item to budget controller
         newItem = budgetCtrl.addItem(input.type, input.description, input.value);
         
         // 3. Add item to UI
@@ -179,9 +189,13 @@ var controller = (function(budgetCtrl, UICtrl) {
         UICtrl.clearFields();
 
         // 5. Calculate Budget
+        updateBudget();
 
         // 6. Display budget on UI
-    }
+        }
+        
+
+    };
     
     return {
         init: () => {
