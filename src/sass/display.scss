@@ -2,4 +2,40 @@
     background-color: #fff;
     color: $color-black;
     height: 50vh;
+    .list__elements {
+        .income {
+            .income__title {
+                
+            }
+            .income__list {
+                
+            }
+        }
+        .expenses {
+            .expenses__title {
+
+            }
+            .expenses__list {
+
+            }
+        }
+        .income__list,
+        .expenses__list {
+            .item {
+                .right {
+                    .item__description {
+
+                    }
+                    .item__value {
+
+                    }
+                    .item__delete {
+                        .item__delete--btn {
+
+                        }
+                    }
+                }
+            }
+        }
+    }
 }

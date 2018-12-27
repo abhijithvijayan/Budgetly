@@ -2,20 +2,20 @@
 var budgetController = (function() {
 
     // constructors
-    var Expense = (id, desc, value) => {
+    var Expense = function(id, desc, value) {
         this.id = id;
         this.desc = desc;
         this.value = value;
     };
 
-    var Income = (id, desc, value) => {
+    var Income = function(id, desc, value) {
         this.id = id;
         this.desc = desc;
         this.value = value;
     };
 
     // empty arrays
-    var income =  expense = [];
+    var income =[], expense = [];
     var totalExp = totalInc = 0;
 
     return {
@@ -44,6 +44,8 @@ var budgetController = (function() {
                 expense.push(newItem);
             }
             // return the current item to update UI
+
+            console.log(newItem);
             return newItem;
         }
     };
@@ -96,11 +98,11 @@ var UIController = (function() {
             // 1. create the description, amount, percentage in html   
             if(type === "plus") {
                 pos = DOMStrings.incomeContainer;
-                html = '<div class="item" id="income-%id%"><div class="item__description">%description%</div><div class="right"><div class="item__value">%value%</div><div class="item__delete"><button class="item__delete--btn">&times;</button></div></div></div>';
+                html = '<div class="item" id="income-%id%"><div class="right"><span class="item__description">%description%</span><span class="item__value">%value%</span><span class="item__delete"><button class="btn btn-link item__delete--btn">&times;</button></span></div></div>';
             }
             else if(type === "minus") {
                 pos = DOMStrings.expensesContainer;
-                html = '<div class="item" id="expense-%id%"><div class="item__description">%description%</div><div class="right"><div class="item__value">%value%</div><div class="item__percentage">21%</div><div class="item__delete"><button class="item__delete--btn">&times;</button></div></div></div>';
+                html = '<div class="item" id="expense-%id%"><div class="right"><span class="item__description">%description%</span><span class="item__value">%value%</span><span class="item__percentage">21%</span><span class="item__delete"><button class="btn btn-link item__delete--btn">&times;</button></span></div></div>';                
             }
 
             console.log(obj.id);
@@ -156,6 +158,8 @@ var controller = (function(budgetCtrl, UICtrl) {
         // 3. Add item to UI
 
         // console.log(newItem);
+
+        console.log(newItem);
 
         UICtrl.addListItem(newItem, input.type);
         
