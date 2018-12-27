@@ -45,7 +45,7 @@ var budgetController = (function() {
             }
             // return the current item to update UI
 
-            console.log(newItem);
+            // console.log(newItem);
             return newItem;
         }
     };
@@ -92,20 +92,16 @@ var UIController = (function() {
         // add to the UI
         addListItem: (obj, type) => {
             var html, updatedHTML, pos;
-
-            console.log(type);
             
             // 1. create the description, amount, percentage in html   
             if(type === "plus") {
                 pos = DOMStrings.incomeContainer;
-                html = '<div class="item" id="income-%id%"><div class="right d-flex justify-content-between align-items-center"><span class="item__description">%description%</span><span class="item__value ml-auto">%value%</span><span class="item__delete"><button class="btn btn-link item__delete--btn d-none"><i class="ion-ios-close-outline"></i></button></span></div></div>';
+                html = '<div class="item" id="income-%id%"><div class="right d-flex justify-content-between align-items-center"><span class="item__description">%description%</span><span class="item__value ml-auto">%value%</span><span class="item__delete"><button type="button" class="btn btn-link item__delete--btn d-none"><i class="ion-ios-close-outline"></i></button></span></div></div>';
             }
             else if(type === "minus") {
                 pos = DOMStrings.expensesContainer;
-                html = '<div class="item" id="expense-%id%"><div class="right d-flex justify-content-between align-items-center"><span class="item__description">%description%</span><span class="item__value ml-auto">%value%</span><span class="item__percentage">21%</span><span class="item__delete"><button class="btn btn-link item__delete--btn d-none"><i class="ion-ios-close-outline"></i></button></span></div></div>';                
+                html = '<div class="item" id="expense-%id%"><div class="right d-flex justify-content-between align-items-center"><span class="item__description">%description%</span><span class="item__value ml-auto">%value%</span><span class="item__percentage">21%</span><span class="item__delete"><button type="button" class="btn btn-link item__delete--btn d-none"><i class="ion-ios-close-outline"></i></button></span></div></div>';                
             }
-
-            console.log(obj.id);
 
             // 2. update with current values
             updatedHTML = html.replace("%id%", obj.id);
@@ -116,7 +112,28 @@ var UIController = (function() {
             // refer: https://developer.mozilla.org/en-US/docs/Web/API/Element/insertAdjacentHTML
             document.querySelector(pos).insertAdjacentHTML('beforeend', updatedHTML);
 
-        } 
+        },
+        
+        clearFields: () => {
+
+            var fields, fieldsArray, i;
+
+            // separate with comma
+            fields = document.querySelectorAll(DOMStrings.inputDesc + ", " + DOMStrings.inputValue);
+            // querySelectorAll -> returns a list
+            console.log(fields);
+            // convert to array using slice()
+            fieldsArray = Array.prototype.slice.call(fields);
+
+            for (i = 0; i < fieldsArray.length; i++) {
+                fieldsArray[i].value = "";
+            }
+
+            // or use for each            
+            // fieldsArray.forEach((current, index, array) => {
+            //     current.value = "";
+            // });
+        }
     };
 
 })();
@@ -156,17 +173,14 @@ var controller = (function(budgetCtrl, UICtrl) {
         newItem = budgetCtrl.addItem(input.type, input.description, input.value);
         
         // 3. Add item to UI
-
-        // console.log(newItem);
-
-        console.log(newItem);
-
         UICtrl.addListItem(newItem, input.type);
-        
 
-        // 4. Calculate Budget
+        // 4. Clear inputs 
+        UICtrl.clearFields();
 
-        // 5. Display budget on UI
+        // 5. Calculate Budget
+
+        // 6. Display budget on UI
     }
     
     return {
