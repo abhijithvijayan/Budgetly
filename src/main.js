@@ -1,3 +1,9 @@
+/*
+Refer: 
+    https://blog.garstasio.com/you-dont-need-jquery/
+    https://developer.mozilla.org/en-US/docs/Web/API/Element/insertAdjacentHTML
+*/
+
 // Budget Controller
 var budgetController = (function() {
 
@@ -70,6 +76,44 @@ var budgetController = (function() {
             return newItem;
         },
 
+        deleteItem: (type, id) => {
+
+            var newIDarray, pos;
+
+            // create a new array with id's from the constructor
+            if(type === "income") {
+
+                // map traverses through the array and returns an array with all the elements
+                newIDarray = income.map(function(current) {
+                    return current.id;
+                });
+                // console.log(newIDarray);
+
+                //find index of the element from this array and then delete from original array
+                console.log(id);
+                pos = newIDarray.indexOf(id); // returns -1 if element is not present
+                if(pos !== -1) {
+                    // delete from original array
+                    income.splice(pos, 1);  // splice(index, no_of_elements_to_be_deleted)
+                }
+                console.log(income);
+
+            }
+            else if (type === "expense") {
+                
+                newIDarray = expense.map(function(current) {
+                    return current.id;
+                });
+                // console.log(newIDarray);
+
+                pos = newIDarray.indexOf(id);
+                if(pos !== -1) {
+                    expense.splice(pos, 1);
+                }
+            }
+
+        },
+
         calculateBudget: () => {
 
             // 1. calculate total income and expense
@@ -104,10 +148,6 @@ var budgetController = (function() {
 
 
 
-
-
-
-
 // UI Controller
 var UIController = (function() {
 
@@ -122,7 +162,8 @@ var UIController = (function() {
         budgetValue: ".budget__value",
         budgetIncVal: ".budget__income--value",
         budgetExpVal: ".budget__expenses--value",
-        expPercent: ".budget__expenses--percentage"
+        expPercent: ".budget__expenses--percentage",
+        delegation__element: ".delegation__element"
     };
 
     return {
@@ -163,9 +204,15 @@ var UIController = (function() {
             updatedHTML = updatedHTML.replace("%value%", obj.value);
 
             // 3. inject html code after the container
-            // refer: https://developer.mozilla.org/en-US/docs/Web/API/Element/insertAdjacentHTML
             document.querySelector(pos).insertAdjacentHTML('beforeend', updatedHTML);
 
+        },
+
+        deleteListItem: (elementID) => {
+
+            var el = document.getElementById(elementID);
+            // select the elements's parent id and then delete child
+            el.parentNode.removeChild(el);
         },
         
         clearFields: () => {
@@ -207,10 +254,6 @@ var UIController = (function() {
 
 
 
-
-
-
-
 // GLOBAL APP CONTROLLER
 var controller = (function(budgetCtrl, UICtrl) {
 
@@ -228,6 +271,9 @@ var controller = (function(budgetCtrl, UICtrl) {
                 ctrlAddItem();
             }
         });
+
+        // event delegation -> triggering an event on child element -> effect taken from parent element (bubbling)
+        document.querySelector(DOM.delegation__element).addEventListener("click", ctrlDeleteItem);
     };
 
     var updateBudget = () => {
@@ -266,7 +312,39 @@ var controller = (function(budgetCtrl, UICtrl) {
             // 6. Display budget on UI
             UICtrl.displayBudget(budgetData);
         }
-        
+    };
+
+    var ctrlDeleteItem = (e) => {
+        var eventID, splitID, type, id, budgetData;
+
+        // see where the event is triggered
+        // console.log(e.target);
+        // find the parent node(traversing)
+        // console.log(e.target.parentNode.parentNode.parentNode);
+        // find node's id
+        // console.log(e.target.parentNode.parentNode.parentNode.id);
+
+        eventID = e.target.parentNode.parentNode.parentNode.id;
+        if(eventID) {
+            // returns array of elements that separated by '-'
+            splitID = eventID.split('-');
+            // console.log(splitID);
+            type = splitID[0];
+            // id = splitID[1];
+            // console.log(typeof(id));  //string
+            id = parseInt(splitID[1]);
+
+            // 1. delete item from data structure
+            budgetCtrl.deleteItem(type, id); 
+
+            // 2. Delete item from UI
+            UICtrl.deleteListItem(eventID);
+
+            // 3. update and show new budget
+            budgetData = updateBudget();
+            UICtrl.displayBudget(budgetData);
+
+        }
 
     };
     
