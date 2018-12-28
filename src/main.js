@@ -81,7 +81,11 @@ var budgetController = (function() {
             // console.log(budget);
 
             // 3. calculate percentage of income spent
-            percentage = Math.round((totalExpense / totalIncome) * 100);
+            if (totalIncome > 0) {
+                percentage = Math.round((totalExpense / totalIncome) * 100);
+            } else {
+                percentage = -1;
+            }
             // console.log(percentage);
             
         },
@@ -114,7 +118,11 @@ var UIController = (function() {
         inputValue: ".add__value",
         addBtn: ".add__btn",
         incomeContainer: ".income__list",
-        expensesContainer: ".expenses__list"
+        expensesContainer: ".expenses__list",
+        budgetValue: ".budget__value",
+        budgetIncVal: ".budget__income--value",
+        budgetExpVal: ".budget__expenses--value",
+        expPercent: ".budget__expenses--percentage"
     };
 
     return {
@@ -179,6 +187,14 @@ var UIController = (function() {
             // fieldsArray.forEach((current, index, array) => {
             //     current.value = "";
             // });
+        },
+
+        displayBudget: (obj) => {
+            // update UI elements
+            document.querySelector(DOMStrings.budgetValue).textContent = obj.budget;
+            document.querySelector(DOMStrings.budgetIncVal).textContent = obj.totalIncome;
+            document.querySelector(DOMStrings.budgetExpVal).textContent = obj.totalExpense;
+            document.querySelector(DOMStrings.expPercent).textContent = obj.percentage + "%";
         }
     };
 
@@ -216,13 +232,13 @@ var controller = (function(budgetCtrl, UICtrl) {
         // 2. return the budget(as object)
         var budget = budgetCtrl.getBudget();
         // console.log(budget);
-
-
-
+        
+        // 3. return budget to display
+        return budget;
     };
 
     var ctrlAddItem = () => {
-        var input, newItem;
+        var input, newItem, budgetData;
 
         // 1. Get Data
         input = UICtrl.getInput();
@@ -240,9 +256,10 @@ var controller = (function(budgetCtrl, UICtrl) {
             UICtrl.clearFields();
 
             // 5. Calculate Budget
-            updateBudget();
+            budgetData = updateBudget();
 
             // 6. Display budget on UI
+            UICtrl.displayBudget(budgetData);
         }
         
 
