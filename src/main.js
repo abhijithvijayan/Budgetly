@@ -195,7 +195,7 @@ var UIController = (function() {
             }
             else if(type === "minus") {
                 pos = DOMStrings.expensesContainer;
-                html = '<div class="item" id="expense-%id%"><div class="right d-flex justify-content-between align-items-center"><span class="item__description">%description%</span><span class="item__value ml-auto">%value%</span><span class="item__percentage">21%</span><span class="item__delete"><button type="button" class="btn btn-link item__delete--btn d-none"><i class="ion-ios-close-outline"></i></button></span></div></div>';                
+                html = '<div class="item" id="expense-%id%"><div class="right d-flex justify-content-between align-items-center"><span class="item__description">%description%</span><span class="item__value ml-auto">%value%</span><span class="item__delete"><button type="button" class="btn btn-link item__delete--btn d-none"><i class="ion-ios-close-outline"></i></button></span></div></div>';                
             }
 
             // 2. update with current values
@@ -283,13 +283,13 @@ var controller = (function(budgetCtrl, UICtrl) {
         // 2. return the budget(as object)
         var budget = budgetCtrl.getBudget();
         // console.log(budget);
-        
-        // 3. return budget to display
-        return budget;
+
+        // 3. Display budget on UI
+        UICtrl.displayBudget(budget);
     };
 
     var ctrlAddItem = () => {
-        var input, newItem, budgetData;
+        var input, newItem;
 
         // 1. Get Data
         input = UICtrl.getInput();
@@ -307,10 +307,7 @@ var controller = (function(budgetCtrl, UICtrl) {
             UICtrl.clearFields();
 
             // 5. Calculate Budget
-            budgetData = updateBudget();
-
-            // 6. Display budget on UI
-            UICtrl.displayBudget(budgetData);
+            updateBudget();
         }
     };
 
@@ -341,8 +338,7 @@ var controller = (function(budgetCtrl, UICtrl) {
             UICtrl.deleteListItem(eventID);
 
             // 3. update and show new budget
-            budgetData = updateBudget();
-            UICtrl.displayBudget(budgetData);
+            updateBudget();
 
         }
 
