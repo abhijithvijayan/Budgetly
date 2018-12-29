@@ -27,5 +27,18 @@
     "bootstrap": "^4.2.1",
     "jquery": "^3.3.1",
     "popper.js": "^1.14.6"
-  }
+  },
+  "description": "[![Build Status](https://travis-ci.org/abhijithvijayan/Budgetly.svg?branch=master)](https://travis-ci.org/abhijithvijayan/Budgetly)",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/abhijithvijayan/Budgetly.git"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/abhijithvijayan/Budgetly/issues"
+  },
+  "homepage": "https://github.com/abhijithvijayan/Budgetly#readme"
 }

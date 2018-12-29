@@ -166,6 +166,31 @@ var UIController = (function() {
         delegation__element: ".delegation__element"
     };
 
+    // PRIVATE
+    var formatNumber = (number, type) => {
+        // + or -
+        // decimal points to 2 places
+        // comma separating thousands
+        // 2305.3456 -> + 2,305.34
+
+        var integer, decimal, numSplit, sign;
+
+        number = Math.abs(number);
+        number = number.toFixed(2); //outputs as a string
+        numSplit = number.split('.');
+        integer = numSplit[0];
+        decimal = numSplit[1];
+        if(integer.length > 3) {
+            // 2310 -> 2,310 substr(pos, how many no's)
+            integer = integer.substr(0, integer.length  - 3) + "," + integer.substr(integer.length - 3, 3); // 23540 -> 23,540
+        }
+
+        type === "plus" ? sign = '+' : sign = '-';
+        // + 2,310.00
+        return sign + " " + integer + "." + decimal;
+    };
+
+    // PUBLIC
     return {
 
         // function to return the 3 input values
@@ -201,7 +226,7 @@ var UIController = (function() {
             // 2. update with current values
             updatedHTML = html.replace("%id%", obj.id);
             updatedHTML = updatedHTML.replace("%description%", obj.desc);
-            updatedHTML = updatedHTML.replace("%value%", obj.value);
+            updatedHTML = updatedHTML.replace("%value%", formatNumber(obj.value, type));
 
             // 3. inject html code after the container
             document.querySelector(pos).insertAdjacentHTML('beforeend', updatedHTML);
@@ -237,10 +262,13 @@ var UIController = (function() {
         },
 
         displayBudget: (obj) => {
+            var type;
+            obj.budget > 0 ? type = "plus" : type = "minus";
+
             // update UI elements
-            document.querySelector(DOMStrings.budgetValue).textContent = obj.budget;
-            document.querySelector(DOMStrings.budgetIncVal).textContent = obj.totalIncome;
-            document.querySelector(DOMStrings.budgetExpVal).textContent = obj.totalExpense;
+            document.querySelector(DOMStrings.budgetValue).textContent = formatNumber(obj.budget, type);
+            document.querySelector(DOMStrings.budgetIncVal).textContent = formatNumber(obj.totalIncome, "plus");
+            document.querySelector(DOMStrings.budgetExpVal).textContent = formatNumber(obj.totalExpense, "minus");
             if(obj.percentage <= 0) {
                 document.querySelector(DOMStrings.expPercent).textContent = "---";
             } else {
