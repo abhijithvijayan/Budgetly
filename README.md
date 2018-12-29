@@ -3,7 +3,9 @@
 
 https://abhijithvijayan.github.io/Budgetly/
 
-![](https://i.imgur.com/w1WlOuA.png)
+## Screenshot
+
+![](https://i.imgur.com/I6fv5mt.png)
 
 ## Dependencies
 
