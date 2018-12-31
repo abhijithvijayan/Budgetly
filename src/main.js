@@ -361,7 +361,7 @@ var controller = (function(budgetCtrl, UICtrl) {
         // find node's id
         // console.log(e.target.parentNode.parentNode.parentNode.id);
 
-        eventID = e.target.parentNode.parentNode.parentNode.id;
+        eventID = e.target.parentNode.parentNode.parentNode.parentNode.id;
         if(eventID) {
             // returns array of elements that separated by '-'
             splitID = eventID.split('-');
